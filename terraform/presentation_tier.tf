@@ -1,29 +1,10 @@
-data "aws_ami" "centos" {
-    owners      = ["679593333241"]
-    most_recent = true
-
-    filter {
-        name   = "name"
-        values = ["CentOS Linux 7 x86_64 HVM EBS *"]
-    }
-
-    filter {
-        name   = "architecture"
-        values = ["x86_64"]
-    }
-
-    filter {
-        name   = "root-device-type"
-        values = ["ebs"]
-    }
-}
-
 resource "aws_launch_configuration" "presentation_lc" {
-    image_id        = data.aws_ami.centos.id
-    instance_type   = "t2.nano"
-    key_name        = var.key_name
-    security_groups = [aws_security_group.presentation_instance_sg.id]
-    user_data       = templatefile("files/presentation_user_data.tmpl", {database_name = var.database_name})
+    image_id                    = data.aws_ami.centos.id
+    instance_type               = "t2.micro"
+    key_name                    = var.key_name
+    security_groups             = [aws_security_group.presentation_instance_sg.id]
+    associate_public_ip_address = true
+    user_data                   = templatefile("files/presentation_user_data.tmpl", {database_name = var.database_name})
 
     lifecycle {
         create_before_destroy = true
