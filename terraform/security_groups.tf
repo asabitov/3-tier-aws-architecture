@@ -56,3 +56,52 @@ resource "aws_security_group" "presentation_instance_sg" {
     }
 }
 
+resource "aws_security_group" "application_alb_sg" {
+    name        = "application_alb_sg"
+    description = "application_alb_sg"
+    vpc_id      = aws_vpc.vpc.id
+
+    ingress {
+        from_port        = 80
+        to_port          = 80
+        protocol         = "tcp"
+        security_groups  = [aws_security_group.presentation_instance_sg.id]
+    }
+
+    egress {
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+}
+
+resource "aws_security_group" "application_instance_sg" {
+    name        = "application_instance_sg"
+    description = "application_instance_sg"
+    vpc_id      = aws_vpc.vpc.id
+
+    ingress {
+        from_port   = 22
+        to_port     = 22
+        protocol    = "tcp"
+        cidr_blocks = [var.bastion_ip]
+    }
+
+    ingress {
+        from_port       = 80
+        to_port         = 80
+        protocol        = "tcp"
+        security_groups = [aws_security_group.application_alb_sg.id]
+    }
+
+    egress {
+        from_port        = 0
+        to_port          = 0
+        protocol         = "-1"
+        cidr_blocks      = ["0.0.0.0/0"]
+        ipv6_cidr_blocks = ["::/0"]
+    }
+}
+

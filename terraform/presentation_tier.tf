@@ -1,4 +1,5 @@
 resource "aws_launch_configuration" "presentation_lc" {
+    name_prefix                 = "pres-"
     image_id                    = data.aws_ami.centos.id
     instance_type               = "t2.micro"
     key_name                    = var.key_name
@@ -12,12 +13,14 @@ resource "aws_launch_configuration" "presentation_lc" {
 }
 
 resource "aws_lb_target_group" "presentation_tg" {
+    name_prefix = "pres-"
     port        = 80
     protocol    = "HTTP"
     vpc_id      = aws_vpc.vpc.id
 }
 
 resource "aws_autoscaling_group" "presentation_asg" {
+    name_prefix          = "pres-"
     launch_configuration = aws_launch_configuration.presentation_lc.name
     min_size             = 2
     max_size             = 4
@@ -45,6 +48,7 @@ resource "aws_autoscaling_policy" "presentation_asg_policy" {
 }
 
 resource "aws_lb" "presentation_alb" {
+    name_prefix        = "pres-"
     internal           = false
     load_balancer_type = "application"
     security_groups    = [aws_security_group.presentation_alb_sg.id]

@@ -5,7 +5,7 @@ aws_region = "ap-southeast-2"
 availability_zone_a = "ap-southeast-2a"
 availability_zone_b = "ap-southeast-2b"
 
-bastion_ip = "13.55.65.64/32"
+bastion_ip = "10.0.1.141/32"
 
 key_name = "asabitov-270"
 
