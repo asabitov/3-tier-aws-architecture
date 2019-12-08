@@ -79,7 +79,7 @@ resource "aws_route_table" "private_subnet_1_route_table" {
 
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_nat_gateway.nat_gw_1.id}"
+        nat_gateway_id = "${aws_nat_gateway.nat_gw_1.id}"
     }
 }
 
@@ -93,7 +93,7 @@ resource "aws_route_table" "private_subnet_2_route_table" {
 
     route {
         cidr_block = "0.0.0.0/0"
-        gateway_id = "${aws_nat_gateway.nat_gw_2.id}"
+        nat_gateway_id = "${aws_nat_gateway.nat_gw_2.id}"
     }
 }
 
