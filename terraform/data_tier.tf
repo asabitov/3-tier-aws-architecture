@@ -3,13 +3,14 @@ resource "aws_db_subnet_group" "database_subnet_group" {
 }
 
 resource "aws_db_instance" "database_instance" {
-    name                 = var.database_name
-    engine               = "postgres"
-    instance_class       = "db.t2.small"
-    username             = var.database_user
-    password             = var.database_password
-    db_subnet_group_name = aws_db_subnet_group.database_subnet_group.id
-    allocated_storage    = 20
+    name                   = var.database_name
+    engine                 = "postgres"
+    instance_class         = "db.t2.small"
+    username               = var.database_user
+    password               = var.database_password
+    db_subnet_group_name   = aws_db_subnet_group.database_subnet_group.id
+    vpc_security_group_ids = [aws_security_group.database_sg.id]
+    allocated_storage      = 20
 }
 
 output "database_address" {
