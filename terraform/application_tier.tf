@@ -4,7 +4,7 @@ resource "aws_launch_configuration" "application_lc" {
     instance_type   = "t2.micro"
     key_name        = var.key_name
     security_groups = [aws_security_group.application_instance_sg.id]
-    user_data       = templatefile("files/app_docker_user_data.tmpl", {database_name = var.database_name})
+    user_data       = templatefile("files/application_docker_user_data.tmpl", {app_repo = var.app_repo, app_name = var.app_name, database_name = var.database_name})
 
     lifecycle {
         create_before_destroy = true

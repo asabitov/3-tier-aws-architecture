@@ -14,3 +14,7 @@ database_user = ""
 database_password = ""
 
 ssl_certificate_arn = ""
+
+app_name = ""
+app_repo = ""
+

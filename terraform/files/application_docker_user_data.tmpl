@@ -3,8 +3,9 @@
 yum install git -y
 yum install docker -y
 
-git clone https://github.com/asabitov/dt.git
-cd dt/app
+git clone ${app_repo}
+
+cd ${app_name}/app
 
 systemctl start docker
 systemctl enable docker

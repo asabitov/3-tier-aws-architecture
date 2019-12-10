@@ -14,3 +14,6 @@ variable "database_user" {}
 variable "database_password" {}
 
 variable "ssl_certificate_arn" {}
+
+variable "app_name" {}
+variable "app_repo" {}
