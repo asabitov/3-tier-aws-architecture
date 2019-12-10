@@ -2,10 +2,10 @@ variable "aws_access_key" {}
 variable "aws_secret_key" {}
 variable "aws_region" {}
 
+variable "admin_ip" {}
+
 variable "availability_zone_a" {}
 variable "availability_zone_b" {}
-
-variable "bastion_ip" {}
 
 variable "key_name" {}
 

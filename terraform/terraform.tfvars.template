@@ -2,10 +2,10 @@ aws_access_key = ""
 aws_secret_key = ""
 aws_region = ""
 
+admin_ip = ""
+
 availability_zone_a = ""
 availability_zone_b = ""
-
-bastion_ip = ""
 
 key_name = ""
 

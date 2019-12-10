@@ -3,7 +3,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def app_msg():
-    return 'Hi, the app is running OK!'
+    return 'The app is running OK!'
 
 
 if __name__ == '__main__':
