@@ -1,14 +1,14 @@
 # DT
 
 ## Overview
-This solution presents a traditional 3-tier architecture in AWS, which is consisted of presentation, application and data tiers. The customer query comes through an externel application load-balancer, then autoscaling set of Nginx web servers serve it on the presentation level. The presentation tier instances talk to the applicatopn tier via the internal application load-balancer. Only application tier instances can communicate to the RDS database on the data tier. Communications on each level are secured with security groups so every layer can only connect to the corresponding endpoints only required for its functioning.       
+This solution presents a traditional 3-tier architecture in AWS, which is consisted of presentation, application and data tiers. The customer query comes through an external application load-balancer, then autoscaling set of Nginx web servers serve it on the presentation level. The presentation tier instances talk to the application tier via the internal application load-balancer. Only application tier instances can communicate to the RDS database on the data tier. Communications on each level are secured with security groups so every layer can only connect to the corresponding endpoints only required for its functioning.       
 
 
 ## How to Deploy
 
 - Create a SSL certificate and add its ARN to "ssl_certificate_arn" variable
 
-- Create a S3 bucket, which will be used to store the Terraform state file. Please use a different name for the S3 bucket from the one in the folowing example:
+- Create a S3 bucket, which will be used to store the Terraform state file. Please use a different name for the S3 bucket from the one in the following example:
 ```
 $ aws s3 mb s3://dt-task-terraform-state
 ```
