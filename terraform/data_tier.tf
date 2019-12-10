@@ -13,7 +13,7 @@ resource "aws_db_instance" "database_instance" {
     allocated_storage      = 20
 }
 
-output "database_address" {
+output "database_endpoint" {
     value = aws_db_instance.database_instance.address
 }
 
