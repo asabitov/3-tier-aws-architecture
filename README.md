@@ -5,7 +5,7 @@ This solution presents a traditional 3-tier architecture in AWS, which is consis
 
 ### How to Deploy
 
-- Create a SSL certificate and add its ARN to "ssl_certificate_arn" variable
+- Create a SSL certificate in AWS Certificate Manager and add its ARN to "ssl_certificate_arn" variable
 
 - Create a S3 bucket, which will be used to store the Terraform state file. Please use a different name for the S3 bucket from the one in the following example:
 ```
