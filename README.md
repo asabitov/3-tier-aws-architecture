@@ -30,6 +30,6 @@ $ terraform apply -var-file="terraform.tfvars"
 
 ### How to Test
 - Run "curl" on your host or use a web browser to go to the external ALB (the external ALB output name is "presentation_alb"). Please note that you would have to use a real SSL certificate while deploying the solution, otherwise you will see an error.
-- SSH to the bastion (the bastion IP address is displayed in output as "bastion_ip_address"), then SSH to a presentation tier instance and run "curl" to query the internal load-balancer (the internal load-balancer output name is "application_alb") 
+- SSH to the bastion (the bastion IP address is displayed in output as "bastion_ip_address"), then SSH to a presentation tier instance and run "curl" to query the internal load-balancer (the internal ALB output name is "application_alb") 
 - SSH to the bastion (the bastion IP address is displayed in output as "bastion_ip_address"), then SSH to an application tier instance and run "telnet" to the RDS instance on port 5432 to connect to the database (the RDS instance name output name is "database_endpoint") 
      
