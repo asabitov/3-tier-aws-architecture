@@ -1,4 +1,4 @@
-# DT
+# Traditional 3-tier Architecture in AWS
 
 ### Overview
 This solution presents a traditional 3-tier architecture in AWS, which is consisted of presentation, application and data tiers. The customer query comes through an external application load-balancer, then autoscaling set of Nginx web servers serve it on the presentation level. The presentation tier instances talk to the application tier via the internal application load-balancer, which has an autoscaling group of application instances behind itself. Each application tier instance has the app which runs in a docker container. Only application tier instances can communicate to the RDS database on the data tier. Communications on each level are secured with security groups so every layer can only connect to the corresponding endpoints only required for its functioning.       
@@ -9,22 +9,22 @@ This solution presents a traditional 3-tier architecture in AWS, which is consis
 
 - Create a S3 bucket, which will be used to store the Terraform state file. Please use a different name for the S3 bucket from the one in the following example:
 ```
-$ aws s3 mb s3://dt-task-terraform-state
+$ aws s3 mb s3://3-tier-aws-terraform-state
 ```
 - Clone the git repository:
 ```
-$ git clone https://github.com/asabitov/dt.git
+$ git clone https://github.com/asabitov/3-tier-aws-architecture.git
 ```
 - Prepare for deployment: go to the "terraform" directory and set variables in "terraform.tfvar" file:
 ```
-$ cd dt/terraform
+$ cd 3-tier-aws-architecture/terraform
 $ cp terraform.tfvar.template terraform.tfvar
 $ vi terraform.tfvar
 ```
 - Please note that you would have to have a real SSL certificate installed in the "AWS Certificate Manager", while deploying the solution, otherwise you will see an error. If you don't have a SSL certificate, please amend the corresponding section for the resource "aws_lb_listener" in "presentation_tier.tf". 
 - Deploy:
 ``` 
-$ terraform init -backend-config="bucket=dt-task-terraform-state"
+$ terraform init -backend-config="bucket=3-tier-aws-terraform-state"
 $ terraform apply -var-file="terraform.tfvars"
 ```
 
